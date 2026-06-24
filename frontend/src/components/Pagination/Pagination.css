@@ -1,7 +1,7 @@
 .Pagination {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
     margin: 16px 0;
@@ -12,35 +12,36 @@
 }
 
 .Pagination__button {
-    min-width: 40px;
-    padding: 8px 12px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    background: #ffffff;
-    color: #1f2937;
-    font-size: 14px;
-    font-weight: 500;
+    min-width: 42px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .Pagination__button:hover:not(:disabled) {
-    background: #f3f4f6;
-    border-color: #9ca3af;
+    background: rgba(59, 130, 246, 0.18);
+    border-color: var(--primary);
+    transform: translateY(-1px);
 }
 
 .Pagination__button:disabled {
-    opacity: 0.5;
+    opacity: 0.45;
     cursor: not-allowed;
 }
 
 .Pagination__button--active {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: var(--primary);
+    border-color: var(--primary);
     color: #ffffff;
 }
 
 .Pagination__button--active:hover:not(:disabled) {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+    background: var(--primary-strong);
+    border-color: var(--primary-strong);
 }

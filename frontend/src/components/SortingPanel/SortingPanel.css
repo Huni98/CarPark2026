@@ -1,15 +1,16 @@
 .SortingPanel {
-    background-color: #ffffff;
-    padding: 1rem;
+    background: linear-gradient(180deg, rgba(17, 33, 61, 0.95), rgba(21, 42, 77, 0.98));
+    padding: 1.25rem 1.4rem;
     margin: 0 auto;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 1120px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    align-items: end;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .SortingPanel:empty {
@@ -25,9 +26,9 @@
 .SortingPanel__label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #6b7280;
+    color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.08em;
 }
 
 .SortingPanel__select {
@@ -38,13 +39,13 @@
 .SortingPanel__select::after {
     content: "";
     position: absolute;
-    right: 12px;
+    right: 14px;
     top: 50%;
     width: 8px;
     height: 8px;
-    border-right: 2px solid #6b7280;
-    border-bottom: 2px solid #6b7280;
-    transform: translateY(-65%) rotate(45deg);
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: translateY(-55%) rotate(45deg);
     pointer-events: none;
 }
 
@@ -52,45 +53,46 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding: 0.5rem 2.25rem 0.5rem 0.75rem;
+    padding: 0.85rem 2.4rem 0.85rem 1rem;
     min-width: 150px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #1f2937;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background-color: rgba(7, 16, 31, 0.9);
+    color: var(--text);
     font-size: 0.95rem;
     cursor: pointer;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .SortingPanel__select select:hover {
-    border-color: #9ca3af;
+    border-color: rgba(59, 130, 246, 0.7);
 }
 
 .SortingPanel__select select:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 .SortingPanel__order {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #1f2937;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background-color: rgba(7, 16, 31, 0.95);
+    color: var(--text);
     cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .SortingPanel__order:hover:not(:disabled) {
-    background-color: #2563eb;
-    border-color: #2563eb;
+    background-color: var(--primary);
+    border-color: var(--primary);
     color: #ffffff;
+    transform: translateY(-1px);
 }
 
 .SortingPanel__order:disabled {

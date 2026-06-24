@@ -2,6 +2,7 @@ import type { Car } from "../../models/car"
 import "./CarItem.css"
 import { useFavorites } from "../../hooks/useFavorites"
 import { IMG_BASE_URL } from "../../data/constants"
+import { useState } from "react"
 
 type Props = {
     car: Car
@@ -10,6 +11,8 @@ type Props = {
 export function CarItem({ car }: Props) {
     const equipments = car.equipment.split(",")
     const { toggleFavorite, isFavorite } = useFavorites()
+    const [count, setCount] = useState(0)
+    
 
     return (
         <div className="carItem">

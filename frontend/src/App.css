@@ -1,5 +1,53 @@
-#root {
+﻿#root {
   max-width: 1280px;
   margin: 0 auto;
-  text-align: center;
+  padding: 0 1rem 2rem;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.App__hero {
+  max-width: 1120px;
+  margin: 0 auto 1.5rem;
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #3b82f6 100%);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 28px 80px rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.App__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2), transparent 16%),
+    radial-gradient(circle at 85% 75%, rgba(239, 68, 68, 0.18), transparent 16%);
+  pointer-events: none;
+}
+
+.App__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: #22d3ee;
+  font-weight: 700;
+}
+
+.App__hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 3.5vw, 4rem);
+  letter-spacing: -0.04em;
+  color: #f8fafc;
+}
+
+.App__description {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.7;
 }
