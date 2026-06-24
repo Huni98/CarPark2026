@@ -1,0 +1,128 @@
+.CarModal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.CarModal__content {
+    background: linear-gradient(180deg, #11213d, #0f172a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+}
+
+.CarModal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.CarModal__close:hover {
+    color: var(--accent);
+}
+
+.CarModal__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.CarModal__image {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    background: rgba(59, 130, 246, 0.05);
+    border-radius: 16px;
+}
+
+.CarModal__titleBox h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    color: #f8fafc;
+}
+
+.CarModal__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.CarModal__statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+.CarModal__stat {
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.CarModal__stat span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+}
+
+.CarModal__section {
+    margin-bottom: 2rem;
+}
+
+.CarModal__section h3 {
+    color: var(--primary);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.CarModal__section p {
+    color: var(--muted);
+    line-height: 1.6;
+    white-space: pre-wrap; /* Respects line breaks in your DB descriptions */
+}
+
+.CarModal__equipmentList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+    color: var(--text);
+}
+
+.CarModal__equipmentList li {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
