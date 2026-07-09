@@ -7,7 +7,7 @@
     padding-bottom: 1rem;
 }
 
-.Content > p {
+.Content>p {
     color: var(--text);
     font-size: 1rem;
     margin: 0;

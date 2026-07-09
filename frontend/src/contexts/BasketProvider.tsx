@@ -49,7 +49,7 @@ export function BasketProvider({ children }: PropsWithChildren) {
         try {
             // Delete all items from the API concurrently
             await Promise.all(basket.map((item) => deleteBasket(item.vin)));
-            
+
             // Clear local state
             setBasket([]);
         } catch (error) {

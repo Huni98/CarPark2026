@@ -53,7 +53,7 @@ export function AdminPage() {
 
             // 3. Save the car using your car.ts API
             await createCar(newCar);
-            
+
             setMessage("Car added successfully!");
             // Reset form
             setFormData({
@@ -86,7 +86,7 @@ export function AdminPage() {
 
             <form className="AdminPage__form" onSubmit={handleSubmit}>
                 <div className="AdminPage__grid">
-                    
+
                     <label><span>VIN (Unique ID)</span>
                         <input required type="text" name="vin" value={formData.vin} onChange={handleChange} />
                     </label>
@@ -105,7 +105,7 @@ export function AdminPage() {
                     <label><span>Price (EUR)</span>
                         <input required type="number" name="price" value={formData.price} onChange={handleChange} />
                     </label>
-                    
+
                     <label><span>Fuel Type</span>
                         <select name="fuelType" value={formData.fuelType} onChange={handleChange}>
                             <option value="PETROL">Petrol</option>
@@ -134,7 +134,7 @@ export function AdminPage() {
                     <label><span>Equipment (Comma separated)</span>
                         <input type="text" name="equipment" placeholder="e.g. Navigation, Bluetooth, Sunroof" value={formData.equipment} onChange={handleChange} />
                     </label>
-                    
+
                     <label><span>Description</span>
                         <textarea required name="description" rows={4} value={formData.description} onChange={handleChange} />
                     </label>

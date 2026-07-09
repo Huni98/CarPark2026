@@ -15,19 +15,19 @@ export function Navbar({ currentView, setCurrentView }: Props) {
                 CarPark
             </div>
             <div className="Navbar__links">
-                <button 
+                <button
                     className={`Navbar__btn ${currentView === "home" ? "active" : ""}`}
                     onClick={() => setCurrentView("home")}
                 >
                     Home
                 </button>
-                <button 
+                <button
                     className={`Navbar__btn ${currentView === "basket" ? "active" : ""}`}
                     onClick={() => setCurrentView("basket")}
                 >
                     Basket ({basket.length})
                 </button>
-                <button 
+                <button
                     className={`Navbar__btn ${currentView === "admin" ? "active" : ""}`}
                     onClick={() => setCurrentView("admin")}
                 >

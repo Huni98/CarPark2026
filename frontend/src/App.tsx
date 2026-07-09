@@ -15,12 +15,12 @@ export function App() {
 
     return (
         <div className="App">
-            
+
             <BasketProvider>
                 <FavoritesProvider>
                     <FiltersProvider>
                         <CarListProvider>
-                            
+
                             <Navbar currentView={currentView} setCurrentView={setCurrentView} />
 
                             {currentView === "home" && (
@@ -42,7 +42,7 @@ export function App() {
                     </FiltersProvider>
                 </FavoritesProvider>
             </BasketProvider>
-            
+
         </div>
     )
 }

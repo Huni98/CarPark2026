@@ -99,7 +99,7 @@
 
 .CarModal__section h3 {
     color: var(--primary);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -107,7 +107,8 @@
 .CarModal__section p {
     color: var(--muted);
     line-height: 1.6;
-    white-space: pre-wrap; /* Respects line breaks in your DB descriptions */
+    white-space: pre-wrap;
+    /* Respects line breaks in your DB descriptions */
 }
 
 .CarModal__equipmentList {
@@ -124,5 +125,5 @@
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-size: 0.9rem;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }

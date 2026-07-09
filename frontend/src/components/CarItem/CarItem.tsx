@@ -13,7 +13,7 @@ type Props = {
 export function CarItem({ car }: Props) {
     const equipments = car.equipment.split(",")
     const { toggleFavorite, isFavorite } = useFavorites()
-    const [count, setCount] = useState(0)
+    //const [count, setCount] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const { addToBasket, removeFromBasket, isInBasket } = useBasket()
 

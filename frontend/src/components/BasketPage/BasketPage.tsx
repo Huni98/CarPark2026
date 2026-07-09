@@ -37,7 +37,7 @@ export function BasketPage() {
     return (
         <div className="BasketPage">
             <h2>Your Basket</h2>
-            
+
             <div className="BasketPage__list">
                 {basket.map((car) => (
                     <div key={car.vin} className="BasketPage__item">
@@ -49,7 +49,7 @@ export function BasketPage() {
                         <div className="BasketPage__price">
                             {car.price} EUR
                         </div>
-                        <button 
+                        <button
                             className="BasketPage__remove"
                             onClick={() => removeFromBasket(car.vin)}
                             disabled={isCheckingOut}
@@ -62,7 +62,7 @@ export function BasketPage() {
 
             <div className="BasketPage__summary">
                 <h3>Total Estimate: <span>{basketTotal} EUR</span></h3>
-                <button 
+                <button
                     className="BasketPage__checkout"
                     onClick={handleCheckout}
                     disabled={isCheckingOut}

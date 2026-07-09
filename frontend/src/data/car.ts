@@ -42,7 +42,7 @@ export async function getCars(params: GetCarsParams = {}): Promise<Paginated<Car
         query.set('_sort', sort)
         query.set('_order', order)
     }
-    
+
     if (page !== undefined) {
         query.set('_page', String(page))
     }
@@ -125,7 +125,7 @@ export async function getManufacturers(): Promise<string[]> {
     // Otherwise, we can fetch all cars and extract unique manufacturers.
     const res = await fetch(`${API_BASE_URL}/cars`)
     const cars = (await res.json()) as Car[]
-    
+
     // Use Set to automatically remove duplicates
     const manufacturers = new Set(cars.map(car => car.manufacturer))
     return Array.from(manufacturers).sort()
@@ -139,7 +139,7 @@ export async function getModelsByManufacturer(manufacturer: string): Promise<str
 
     const res = await fetch(`${API_BASE_URL}/cars?manufacturer=${manufacturer}`)
     const cars = (await res.json()) as Car[]
-    
+
     const models = new Set(cars.map(car => car.model))
     return Array.from(models).sort()
 }

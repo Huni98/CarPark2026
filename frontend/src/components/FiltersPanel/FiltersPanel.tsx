@@ -4,10 +4,10 @@ import { getManufacturers, getModelsByManufacturer } from "../../data/car";
 import './FiltersPanel.css';
 
 export function FiltersPanel() {
-    const { 
-        filters, 
-        updateFilter, 
-        showFavoritesOnly, 
+    const {
+        filters,
+        updateFilter,
+        showFavoritesOnly,
         handleFavoritesToggle,
         resetFilters
     } = useFilters();
@@ -45,7 +45,7 @@ export function FiltersPanel() {
                 console.error("Failed to load models", error);
             }
         }
-        
+
         loadModels();
     }, [filters.manufacturer]);
 
@@ -53,9 +53,9 @@ export function FiltersPanel() {
     const handleManufacturerChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newManufacturer = e.target.value;
         updateFilter("manufacturer", newManufacturer);
-        
+
         // Immediately clear the model when the manufacturer changes
-        updateFilter("model", ""); 
+        updateFilter("model", "");
     };
 
     return (
@@ -68,8 +68,8 @@ export function FiltersPanel() {
                 {/* Make & Model Dropdowns */}
                 <label className="FiltersPanel__inputGroup">
                     <span>Manufacturer</span>
-                    <select 
-                        value={filters.manufacturer} 
+                    <select
+                        value={filters.manufacturer}
                         onChange={handleManufacturerChange}
                     >
                         <option value="">All Manufacturers</option>
@@ -80,11 +80,11 @@ export function FiltersPanel() {
                         ))}
                     </select>
                 </label>
-                
+
                 <label className="FiltersPanel__inputGroup">
                     <span>Model</span>
-                    <select 
-                        value={filters.model} 
+                    <select
+                        value={filters.model}
                         onChange={(e) => updateFilter("model", e.target.value)}
                         disabled={!filters.manufacturer} // Disable if no manufacturer is selected
                     >
@@ -156,8 +156,8 @@ export function FiltersPanel() {
 
             <div className="FiltersPanel__controls">
                 <label className="FiltersPanel__favoritesToggle">
-                    <input 
-                        type="checkbox" 
+                    <input
+                        type="checkbox"
                         checked={showFavoritesOnly}
                         onChange={(e) => handleFavoritesToggle(e.target.checked)}
                     />

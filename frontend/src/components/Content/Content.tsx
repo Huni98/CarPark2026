@@ -9,11 +9,11 @@ import { useFavorites } from "../../hooks/useFavorites" // 1. Import the favorit
 
 export function Content() {
     // 2. Destructure showFavoritesOnly
-    const { filters, showFavoritesOnly } = useFilters() 
+    const { filters, showFavoritesOnly } = useFilters()
     const { carsList, isLoading, isError } = useCarsList()
-    
+
     // 3. Get the favorites array from context
-    const { favorites } = useFavorites() 
+    const { favorites } = useFavorites()
 
     // 4. If the toggle is checked, use the favorites list. Otherwise, use the API list.
     const baseCarsList = showFavoritesOnly ? favorites : carsList
@@ -45,8 +45,8 @@ export function Content() {
                     {/* Show a friendly message if the list is empty */}
                     {filteredCarsList.length === 0 ? (
                         <p style={{ textAlign: "center", color: "var(--muted)", padding: "2rem" }}>
-                            {showFavoritesOnly 
-                                ? "You haven't added any favorites yet." 
+                            {showFavoritesOnly
+                                ? "You haven't added any favorites yet."
                                 : "No cars match your filters."}
                         </p>
                     ) : (

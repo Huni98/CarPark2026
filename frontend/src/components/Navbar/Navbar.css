@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 2rem;
-    background: #0f172a; /* Solid dark background, no blur */
+    background: #0f172a;
+    /* Solid dark background, no blur */
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     position: sticky;
     top: 0;

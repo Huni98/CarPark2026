@@ -40,18 +40,18 @@ export function FiltersProvider({ children }: PropsWithChildren) {
         setOrder("asc")
         setPage(1)
     }
-    
+
     const context = {
         filters,
         setFilters,
         updateFilter,
         resetFilters,
-        showFavoritesOnly, 
+        showFavoritesOnly,
         handleFavoritesToggle: (checked: boolean) => {
             setShowFavoritesOnly(checked)
             setPage(1) // Good UX: Reset to page 1 when toggling favorites
         },
-        
+
         // NEW: Export the state and setters to the context
         sort,
         setSort,
