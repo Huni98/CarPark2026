@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\components\\shared",
+    "\\frontend\\src\\components\\SortingPanel",
+    "\\frontend\\src\\contexts",
+    "\\frontend\\src\\data",
+    "\\frontend\\src\\hooks",
+    "\\frontend\\src\\models"
+  ],
+  "SelectedNode": "\\frontend\\index.html",
+  "PreviewInSolutionExplorer": false
+}

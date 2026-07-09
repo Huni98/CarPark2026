@@ -5,12 +5,21 @@ import { FiltersPanel } from "../FiltersPanel/FiltersPanel"
 import { SortingPanel } from "../SortingPanel/SortingPanel"
 import { useCarsList } from "../../hooks/useCarsList"
 import { Pagination } from "../Pagination/Pagination"
+import { useFavorites } from "../../hooks/useFavorites" // 1. Import the favorites hook
 
 export function Content() {
-    const { filters } = useFilters()
+    // 2. Destructure showFavoritesOnly
+    const { filters, showFavoritesOnly } = useFilters() 
     const { carsList, isLoading, isError } = useCarsList()
+    
+    // 3. Get the favorites array from context
+    const { favorites } = useFavorites() 
 
-    const filteredCarsList = carsList.filter((car) => {
+    // 4. If the toggle is checked, use the favorites list. Otherwise, use the API list.
+    const baseCarsList = showFavoritesOnly ? favorites : carsList
+
+    // 5. Apply the text filter to whichever list is currently active
+    const filteredCarsList = baseCarsList.filter((car) => {
         const filteredManufacturer = filters.manufacturer === "" ||
             car.manufacturer.toLowerCase().includes(filters.manufacturer.toLowerCase())
 
@@ -21,23 +30,35 @@ export function Content() {
         <div className="Content">
             <FiltersPanel />
 
-            <SortingPanel />
+            {/* Hide sorting panel if we are only viewing favorites */}
+            {!showFavoritesOnly && <SortingPanel />}
 
-            {isLoading && <p>Data is loading...</p>}
-            {isError && <p>Something went wrong</p>}
+            {isLoading && !showFavoritesOnly && <p>Data is loading...</p>}
+            {isError && !showFavoritesOnly && <p>Something went wrong</p>}
 
-            {!isLoading && !isError && (
+            {(!isLoading && !isError) || showFavoritesOnly ? (
                 <div className="CarList">
 
-                    <Pagination />
+                    {/* Hide top pagination if we are only viewing favorites */}
+                    {!showFavoritesOnly && <Pagination />}
 
-                    {filteredCarsList.map((car) => (
-                        <CarItem key={car.vin} car={car} />
-                    ))}
+                    {/* Show a friendly message if the list is empty */}
+                    {filteredCarsList.length === 0 ? (
+                        <p style={{ textAlign: "center", color: "var(--muted)", padding: "2rem" }}>
+                            {showFavoritesOnly 
+                                ? "You haven't added any favorites yet." 
+                                : "No cars match your filters."}
+                        </p>
+                    ) : (
+                        filteredCarsList.map((car) => (
+                            <CarItem key={car.vin} car={car} />
+                        ))
+                    )}
 
-                    <Pagination />
+                    {/* Hide bottom pagination if we are only viewing favorites */}
+                    {!showFavoritesOnly && <Pagination />}
                 </div>
-            )}
+            ) : null}
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { useFavorites } from "../../hooks/useFavorites"
 import { IMG_BASE_URL } from "../../data/constants"
 import { useState } from "react"
 import { CarModal } from "./CarModal"
+import { useBasket } from "../../hooks/useBasket"
 
 type Props = {
     car: Car
@@ -14,6 +15,7 @@ export function CarItem({ car }: Props) {
     const { toggleFavorite, isFavorite } = useFavorites()
     const [count, setCount] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const { addToBasket, removeFromBasket, isInBasket } = useBasket()
 
     return (
         <>
@@ -43,14 +45,21 @@ export function CarItem({ car }: Props) {
                     </div>
                 </div>
                 <div className="price">Price: {car.price} EUR</div>
-                
+
                 {/* Button Container */}
-                <div className="row" style={{ display: 'flex', gap: '10px', marginTop: 'auto' }}>
+                <div className="row" style={{ display: 'flex', gap: '10px', marginTop: 'auto', flexWrap: 'wrap' }}>
                     <button className="button" onClick={() => setIsModalOpen(true)}>
-                        Quick View Details
+                        Quick View
                     </button>
                     <button className="button" onClick={() => toggleFavorite(car)}>
-                        {isFavorite(car) ? "Remove from favorites" : "Add to favorites"}
+                        {isFavorite(car) ? "★ Favorited" : "☆ Favorite"}
+                    </button>
+                    <button
+                        className="button"
+                        style={{ backgroundColor: isInBasket(car.vin) ? 'var(--muted)' : '#10b981' }}
+                        onClick={() => isInBasket(car.vin) ? removeFromBasket(car.vin) : addToBasket(car)}
+                    >
+                        {isInBasket(car.vin) ? "Remove from Basket" : "Add to Basket"}
                     </button>
                 </div>
             </div>

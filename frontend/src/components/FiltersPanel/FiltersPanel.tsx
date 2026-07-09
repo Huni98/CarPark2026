@@ -1,4 +1,6 @@
-import { useFilters } from "../../hooks/useFilters"; 
+import { useState, useEffect } from "react";
+import { useFilters } from "../../hooks/useFilters";
+import { getManufacturers, getModelsByManufacturer } from "../../data/car";
 import './FiltersPanel.css';
 
 export function FiltersPanel() {
@@ -10,6 +12,52 @@ export function FiltersPanel() {
         resetFilters
     } = useFilters();
 
+    // 1. Create state to hold our dropdown options
+    const [availableManufacturers, setAvailableManufacturers] = useState<string[]>([]);
+    const [availableModels, setAvailableModels] = useState<string[]>([]);
+
+    // 2. Fetch manufacturers exactly once when the component mounts
+    useEffect(() => {
+        async function loadManufacturers() {
+            try {
+                const data = await getManufacturers();
+                setAvailableManufacturers(data);
+            } catch (error) {
+                console.error("Failed to load manufacturers", error);
+            }
+        }
+        loadManufacturers();
+    }, []);
+
+    // 3. Fetch models whenever the selected manufacturer changes
+    useEffect(() => {
+        async function loadModels() {
+            // If they clear the manufacturer, empty the models list
+            if (!filters.manufacturer) {
+                setAvailableModels([]);
+                return;
+            }
+
+            try {
+                const data = await getModelsByManufacturer(filters.manufacturer);
+                setAvailableModels(data);
+            } catch (error) {
+                console.error("Failed to load models", error);
+            }
+        }
+        
+        loadModels();
+    }, [filters.manufacturer]);
+
+    // 4. Custom handler for manufacturer to ensure we reset the model
+    const handleManufacturerChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newManufacturer = e.target.value;
+        updateFilter("manufacturer", newManufacturer);
+        
+        // Immediately clear the model when the manufacturer changes
+        updateFilter("model", ""); 
+    };
+
     return (
         <div className="FiltersPanel">
             <div className="FiltersPanel__header">
@@ -17,14 +65,36 @@ export function FiltersPanel() {
             </div>
 
             <div className="FiltersPanel__grid">
-                {/* Make & Model */}
+                {/* Make & Model Dropdowns */}
                 <label className="FiltersPanel__inputGroup">
                     <span>Manufacturer</span>
-                    <input type="text" placeholder="e.g. Volvo" value={filters.manufacturer} onChange={(e) => updateFilter("manufacturer", e.target.value)} />
+                    <select 
+                        value={filters.manufacturer} 
+                        onChange={handleManufacturerChange}
+                    >
+                        <option value="">All Manufacturers</option>
+                        {availableManufacturers.map(manufacturer => (
+                            <option key={manufacturer} value={manufacturer}>
+                                {manufacturer}
+                            </option>
+                        ))}
+                    </select>
                 </label>
+                
                 <label className="FiltersPanel__inputGroup">
                     <span>Model</span>
-                    <input type="text" placeholder="e.g. XC60" value={filters.model} onChange={(e) => updateFilter("model", e.target.value)} />
+                    <select 
+                        value={filters.model} 
+                        onChange={(e) => updateFilter("model", e.target.value)}
+                        disabled={!filters.manufacturer} // Disable if no manufacturer is selected
+                    >
+                        <option value="">All Models</option>
+                        {availableModels.map(model => (
+                            <option key={model} value={model}>
+                                {model}
+                            </option>
+                        ))}
+                    </select>
                 </label>
                 <label className="FiltersPanel__inputGroup">
                     <span>Year</span>

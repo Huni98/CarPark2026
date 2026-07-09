@@ -45,3 +45,15 @@
     background: var(--primary-strong);
     border-color: var(--primary-strong);
 }
+
+.Pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    padding: 10px 0;
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 600;
+    user-select: none;
+}

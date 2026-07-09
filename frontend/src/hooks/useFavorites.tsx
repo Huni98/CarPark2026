@@ -1,10 +1,12 @@
-import type { Car } from "../models/car"
+import { useContext } from "react";
+import { FavoritesContext } from "../contexts/FavoritesContext"; // Adjust this path if needed
 
-export const useFavorites = () => {
+export function useFavorites() {
+    const context = useContext(FavoritesContext);
     
-    return {
-        favorites: [],
-        toggleFavorite: (car: Car) => {},
-        isFavorite: (car: Car) => false
+    if (!context) {
+        throw new Error("useFavorites must be used within a FavoritesProvider");
     }
+    
+    return context;
 }

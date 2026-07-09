@@ -6,6 +6,16 @@ import type { Car } from "../models/car";
 
 const defaultFilters: Filters = {
     manufacturer: "",
+    model: "",
+    constructionYear: "",
+    mileage: "",
+    fuelType: "",
+    transmissionType: "",
+    color: "",
+    power: "",
+    doorCount: "",
+    condition: "",
+    price: "",
 }
 
 export function FiltersProvider({ children }: PropsWithChildren) {
@@ -13,7 +23,7 @@ export function FiltersProvider({ children }: PropsWithChildren) {
     const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
 
     // NEW: Add actual state for sorting and pagination
-    const [sort, setSort] = useState<keyof Car | undefined>(undefined)
+    const [sort, setSort] = useState<keyof Car | undefined>("manufacturer")
     const [order, setOrder] = useState<"asc" | "desc">("asc")
     const [limit, setLimit] = useState<number>(5)
     const [page, setPage] = useState<number>(1)
@@ -26,7 +36,7 @@ export function FiltersProvider({ children }: PropsWithChildren) {
     const resetFilters = () => {
         setFilters(defaultFilters)
         setShowFavoritesOnly(false)
-        setSort(undefined)
+        setSort("manufacturer")
         setOrder("asc")
         setPage(1)
     }

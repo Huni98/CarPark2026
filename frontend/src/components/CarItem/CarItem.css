@@ -8,7 +8,8 @@
     display: grid;
     grid-template-columns: minmax(160px, 280px) 1fr auto;
     gap: 1.5rem;
-    max-width: 1120px;
+    
+    max-width: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 

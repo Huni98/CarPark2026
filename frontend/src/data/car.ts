@@ -28,7 +28,7 @@ export type Paginated<T> = {
  * @returns A page of cars plus pagination metadata
  */
 export async function getCars(params: GetCarsParams = {}): Promise<Paginated<Car>> {
-    const { sort, order = 'asc', page, limit, filters = {} } = params
+    const { sort, order = 'asc', page = 1, limit = 5, filters = {} } = params
 
     const query = new URLSearchParams()
 
@@ -115,4 +115,31 @@ export async function deleteCar(vin: string): Promise<void> {
     if (!res.ok) {
         throw new Error(`Delete failed: ${res.status} ${res.statusText}`)
     }
+}
+
+/**
+ * Gets a list of unique manufacturers
+ */
+export async function getManufacturers(): Promise<string[]> {
+    // If your backend has a specific endpoint like /api/manufacturers, use that instead!
+    // Otherwise, we can fetch all cars and extract unique manufacturers.
+    const res = await fetch(`${API_BASE_URL}/cars`)
+    const cars = (await res.json()) as Car[]
+    
+    // Use Set to automatically remove duplicates
+    const manufacturers = new Set(cars.map(car => car.manufacturer))
+    return Array.from(manufacturers).sort()
+}
+
+/**
+ * Gets a list of unique models for a specific manufacturer
+ */
+export async function getModelsByManufacturer(manufacturer: string): Promise<string[]> {
+    if (!manufacturer) return []
+
+    const res = await fetch(`${API_BASE_URL}/cars?manufacturer=${manufacturer}`)
+    const cars = (await res.json()) as Car[]
+    
+    const models = new Set(cars.map(car => car.model))
+    return Array.from(models).sort()
 }
