@@ -12,7 +12,7 @@ export function Navbar({ currentView, setCurrentView }: Props) {
     return (
         <nav className="Navbar">
             <div className="Navbar__logo" onClick={() => setCurrentView("home")}>
-                CarPark
+                Hunors CarPark
             </div>
             <div className="Navbar__links">
                 <button

@@ -8,14 +8,11 @@ const defaultFilters: Filters = {
     manufacturer: "",
     model: "",
     constructionYear: "",
-    mileage: "",
+    mileage_lte: "",
     fuelType: "",
-    transmissionType: "",
-    color: "",
-    power: "",
-    doorCount: "",
-    condition: "",
-    price: "",
+    gearbox: "",
+    power_gte: "",
+    price_lte: "",
 }
 
 export function FiltersProvider({ children }: PropsWithChildren) {

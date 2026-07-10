@@ -86,7 +86,7 @@ export function FiltersPanel() {
                     <select
                         value={filters.model}
                         onChange={(e) => updateFilter("model", e.target.value)}
-                        disabled={!filters.manufacturer} // Disable if no manufacturer is selected
+                        disabled={!filters.manufacturer}
                     >
                         <option value="">All Models</option>
                         {availableModels.map(model => (
@@ -96,9 +96,17 @@ export function FiltersPanel() {
                         ))}
                     </select>
                 </label>
+                
                 <label className="FiltersPanel__inputGroup">
                     <span>Year</span>
-                    <input type="number" placeholder="e.g. 2021" value={filters.constructionYear} onChange={(e) => updateFilter("constructionYear", e.target.value)} />
+                    <input 
+                        type="number" 
+                        min="1900"
+                        onKeyDown={(e) => { if (e.key === '-' || e.key === 'e') e.preventDefault() }}
+                        placeholder="e.g. 2021" 
+                        value={filters.constructionYear} 
+                        onChange={(e) => updateFilter("constructionYear", e.target.value)} 
+                    />
                 </label>
 
                 {/* Technical Specs */}
@@ -112,45 +120,50 @@ export function FiltersPanel() {
                         <option value="HYBRID">Hybrid</option>
                     </select>
                 </label>
+                
                 <label className="FiltersPanel__inputGroup">
-                    <span>Transmission</span>
-                    <select value={filters.transmissionType} onChange={(e) => updateFilter("transmissionType", e.target.value)}>
+                    <span>Gearbox</span>
+                    <select value={filters.gearbox} onChange={(e) => updateFilter("gearbox", e.target.value)}>
                         <option value="">Any Trans.</option>
                         <option value="AUTOMATIC">Automatic</option>
                         <option value="MANUAL">Manual</option>
                     </select>
                 </label>
+                
                 <label className="FiltersPanel__inputGroup">
-                    <span>Power (HP)</span>
-                    <input type="number" placeholder="Min Power" value={filters.power} onChange={(e) => updateFilter("power", e.target.value)} />
+                    <span>Min Power (HP)</span>
+                    <input 
+                        type="number" 
+                        min="0"
+                        onKeyDown={(e) => { if (e.key === '-' || e.key === 'e') e.preventDefault() }}
+                        placeholder="e.g. 150" 
+                        value={filters.power_gte} 
+                        onChange={(e) => updateFilter("power_gte", e.target.value)} 
+                    />
                 </label>
 
-                {/* Details */}
                 <label className="FiltersPanel__inputGroup">
                     <span>Max Mileage</span>
-                    <input type="number" placeholder="e.g. 50000 km" value={filters.mileage} onChange={(e) => updateFilter("mileage", e.target.value)} />
+                    <input 
+                        type="number" 
+                        min="0"
+                        onKeyDown={(e) => { if (e.key === '-' || e.key === 'e') e.preventDefault() }}
+                        placeholder="e.g. 50000 km" 
+                        value={filters.mileage_lte} 
+                        onChange={(e) => updateFilter("mileage_lte", e.target.value)} 
+                    />
                 </label>
-                <label className="FiltersPanel__inputGroup">
-                    <span>Color</span>
-                    <input type="text" placeholder="e.g. White" value={filters.color} onChange={(e) => updateFilter("color", e.target.value)} />
-                </label>
-                <label className="FiltersPanel__inputGroup">
-                    <span>Doors</span>
-                    <input type="number" placeholder="e.g. 5" value={filters.doorCount} onChange={(e) => updateFilter("doorCount", e.target.value)} />
-                </label>
-
-                {/* Sales */}
-                <label className="FiltersPanel__inputGroup">
-                    <span>Condition</span>
-                    <select value={filters.condition} onChange={(e) => updateFilter("condition", e.target.value)}>
-                        <option value="">Any Cond.</option>
-                        <option value="NEW">New</option>
-                        <option value="USED">Used</option>
-                    </select>
-                </label>
+                
                 <label className="FiltersPanel__inputGroup">
                     <span>Max Price (€)</span>
-                    <input type="number" placeholder="e.g. 35000" value={filters.price} onChange={(e) => updateFilter("price", e.target.value)} />
+                    <input 
+                        type="number" 
+                        min="0"
+                        onKeyDown={(e) => { if (e.key === '-' || e.key === 'e') e.preventDefault() }}
+                        placeholder="e.g. 35000" 
+                        value={filters.price_lte} 
+                        onChange={(e) => updateFilter("price_lte", e.target.value)} 
+                    />
                 </label>
             </div>
 

@@ -1,19 +1,16 @@
 import { createContext } from "react";
 import type { Car } from "../models/car";
 
-// 1. Expanded Filters Type
+// 1. Updated Filters Type to exactly match the DB and API requirements
 export type Filters = {
     manufacturer: string;
     model: string;
     constructionYear: string;
-    mileage: string;
+    mileage_lte: string; // Appended _lte for max range
     fuelType: string;
-    transmissionType: string;
-    color: string;
-    power: string;
-    doorCount: string;
-    condition: string;
-    price: string; 
+    gearbox: string;     // Renamed to match DB
+    power_gte: string;   // Appended _gte for min range
+    price_lte: string;   // Appended _lte for max range
 }
 
 type FiltersContextType = {

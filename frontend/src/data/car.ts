@@ -34,7 +34,14 @@ export async function getCars(params: GetCarsParams = {}): Promise<Paginated<Car
 
     for (const [key, value] of Object.entries(filters)) {
         if (value !== undefined && value !== '') {
-            query.set(`${key}_like`, value)
+            // NEW: Check if the key is one of our number ranges
+            if (key.endsWith('_lte') || key.endsWith('_gte')) {
+                // If it's a range, pass the exact key (e.g., price_lte=35000)
+                query.set(key, value)
+            } else {
+                // For everything else, keep the flexible text search
+                query.set(`${key}_like`, value)
+            }
         }
     }
 
@@ -142,4 +149,16 @@ export async function getModelsByManufacturer(manufacturer: string): Promise<str
 
     const models = new Set(cars.map(car => car.model))
     return Array.from(models).sort()
+}
+
+/**
+ * Gets all cars without pagination or filters (useful for Admin dropdowns)
+ * @returns Array of all cars
+ */
+export async function getAllCars(): Promise<Car[]> {
+    const res = await fetch(`${API_BASE_URL}/cars`)
+    if (!res.ok) {
+        throw new Error(`Request failed: ${res.status} ${res.statusText}`)
+    }
+    return res.json() as Promise<Car[]>
 }

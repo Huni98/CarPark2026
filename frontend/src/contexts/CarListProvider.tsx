@@ -45,7 +45,10 @@ export function CarListProvider({ children }: PropsWithChildren) {
     }, [filters, page, limit, sort, order])
 
     useEffect(() => {
+        const delayTimer = setTimeout(() => {
         getCarList()
+        }, 500)
+        return () => clearTimeout(delayTimer)
     }, [filters, page, limit, sort, order])
 
     const context: CarListContextType = {
